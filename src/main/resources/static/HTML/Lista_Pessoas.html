@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+
+    <!-- Esta linha indica o diretório do script CSS -->
+    <link rel="stylesheet" href="/CSS/Lista_Style.css">
+    <link rel="stylesheet" href="/CSS/Navegacao_Btn.css">
+</head>
+
+<body>
+
+    <!-- div class container define um elemento retangular na tela -->
+    <div class="container">
+        <!-- definindo texto contido dentro do elemento retangular -->
+        <!-- class define o nome do metodo utilizado para estilização do titulo no CSS -->
+        <h2 class="titulo-lista">Lista de Pessoas</h2>
+        <!-- ul id utilizado para atrelar função javascript na div -->
+        <!-- class utilizado para atrelar função CSS na div -->
+        <ul id="pessoas_list" class="pessoas-list"></ul>
+    </div>
+
+    <!-- Link para adicionar uma nova pessoa -->
+    <div class="adicionar-pessoa-link">
+        <a href="Add_Pessoa.html" class="navegacao-btn">Cadastrar novo usuario</a>  <!-- Link para página de adicionar pessoa -->
+    </div>
+
+    <!-- Esta linha indica o diretório do script JavaScript -->
+    <script src="/JS/Lista_Pessoas.js"></script>
+</body>
+
+</html>

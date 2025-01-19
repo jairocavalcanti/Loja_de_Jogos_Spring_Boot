@@ -1,0 +1,22 @@
+/* Estilização geral do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #da9fc8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container do formulário */
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Isso vai alinhar os elementos em coluna */
+}
