@@ -6,8 +6,13 @@ body {
     padding: 0;
 }
 
+form {
+    display: flex;
+    flex-direction: column; /* Isso vai alinhar os elementos em coluna */
+}
+
 /* Container do formulário */
-.form-container {
+.form-salvar-pessoa {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -16,7 +21,11 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-form {
-    display: flex;
-    flex-direction: column; /* Isso vai alinhar os elementos em coluna */
+.form-buscar_por_id{
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

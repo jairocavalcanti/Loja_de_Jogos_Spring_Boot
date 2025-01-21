@@ -1,0 +1,57 @@
+
+/*REGRAS DE ESTILO PARA BOTÃO QUE DIRECIONA Á CLASSE DE GERENCIAMENTO DE USUARIO*/
+
+.gerencia-btn {
+    display: inline-block; /* Faz o link funcionar como um botão */
+    padding: 12px 20px; /* Adiciona espaçamento interno */
+    background-color: #4d0747; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    border-radius: 8px; /* Arredonda os cantos */
+    text-decoration: none; /* Remove o sublinhado do link */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza transições */
+}
+
+.gerencia-btn:hover {
+    background-color: #d475a9; /* Cor do botão quando passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+}
+
+.gerencia-btn:active {
+    background-color: #b10e52; /* Cor do botão quando clicado */
+    transform: scale(1); /* Retorna ao tamanho original */
+}
+
+
+/*REGRAS DE ESTILO PARA BOTÃO DE VOLTAR PARA LISTA DE USUARIOS*/
+
+.voltar_lista_usuarios-btn {
+    /*!! COMANDOS PARA AJUSTE DE POSIÇÃO DO BOTÃO!! */
+    position: fixed; /* Posiciona o botão fixamente na janela */
+    bottom: 20px; /* Distância da parte inferior */
+    right: 20px; /* Distância da lateral direita */
+   
+    display: inline-block; /* Faz o link funcionar como um botão */
+    padding: 12px 20px; /* Adiciona espaçamento interno */
+    background-color: #0e010c; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    border-radius: 8px; /* Arredonda os cantos */
+    text-decoration: none; /* Remove o sublinhado do link */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza transições */
+}
+
+.voltar_lista_usuarios-btn:hover {
+    background-color: #d475a9; /* Cor do botão quando passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+}
+
+.voltar_lista_usuarios-btn:active {
+    background-color: #b10e52; /* Cor do botão quando clicado */
+    transform: scale(1); /* Retorna ao tamanho original */
+}
+
