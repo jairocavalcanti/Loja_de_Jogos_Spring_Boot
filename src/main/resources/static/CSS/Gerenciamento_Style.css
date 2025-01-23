@@ -1,0 +1,68 @@
+/* Estilização geral do corpo */
+body {
+    font-family: Arial, sans-serif; /* Define a fonte padrão do texto como Arial ou, caso não esteja disponível, sans-serif  */ 
+    background-color: #da9fc8; /* Define a cor de fundo do corpo da página com algum tom de cor  */
+    margin: 0; /* Remove a margem padrão do corpo  */
+    padding: 0; /* Remove o preenchimento padrão do corpo */
+}
+
+form {
+    display: flex; /* Define o layout do formulário como flexbox */
+    flex-direction: column; /* Isso vai alinhar os elementos em coluna */
+}
+
+/* Container do formulário */
+.form-salvar-pessoa {
+    max-width: 600px; /* Define a largura maxima para 600px */
+    margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-buscar_por_id {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-busca-pessoa-id {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(105, 18, 18, 0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 10px;
+}
+
+.btn_buscar_por_id {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-excluir_pessoa{
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn_excluir {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

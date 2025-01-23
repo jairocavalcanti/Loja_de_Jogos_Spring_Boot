@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Pessoa</title>
-    <link rel="stylesheet" href="/CSS/Cadastro_Style.css">
+    <link rel="stylesheet" href="/CSS/Gerenciamento_Style.css">
     <link rel="stylesheet" href="/CSS/Buttons.css">
-    <link rel="stylesheet" href="/CSS/Busca_id_Style.css">
 </head>
 
 <body>
@@ -31,14 +29,23 @@
 
     <div class="form-buscar_por_id">
         <h2>Buscar por id</h2>
-        <form id="getbyid-pessoa-form">
+        <form id="form-buscar_por_id">
             <label for="insert-id">ID da pessoa:</label>
             <input type="number" id="insert-id" required><br>
-            <button type="submit" class="form-buscar_por_id">Buscar pessoa</button>
+            <button type="submit" class="btn_buscar_por_id">Buscar pessoa</button>
         </form>
 
-        <div class="busca-pessoa-info"></div>
+        <div class="form-busca-pessoa-id"></div>
 
+    </div>
+
+    <div class="form-excluir_pessoa">
+        <h2>Excluir pessoa</h2>
+        <form id="form-excluir_pessoa" class="Exclude form">
+            <label for="pessoa-id">ID da pessoa:</label>
+            <input type="number" id="pessoa-id" required><br>
+            <button type="submit" class="btn_excluir">Excluir pessoa</button>
+        </form>
     </div>
 
 

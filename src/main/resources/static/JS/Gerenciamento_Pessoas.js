@@ -47,7 +47,7 @@ document.getElementById('add-pessoa-form').addEventListener('submit', async (e) 
 });
 
 
-document.getElementById('getbyid-pessoa-form').addEventListener('submit', async (e) => {
+document.getElementById('form-buscar_por_id').addEventListener('submit', async (e) => {
    e.preventDefault();
 
    const id = document.getElementById('insert-id').value;
@@ -55,7 +55,7 @@ document.getElementById('getbyid-pessoa-form').addEventListener('submit', async 
 
    // utilizando query selector para selecionar o elemento pela classe
    // com o query selector conseguimos 
-   const pessoainfo = document.querySelector('.busca-pessoa-info');
+   const pessoainfo = document.querySelector('.form-busca-pessoa-id');
 
    if (response.ok) {
       const pessoa = await response.json();

@@ -27,10 +27,10 @@ body{
 
 /*o titulo da REGRA DE ESTILO abaixo possui ligação direta com a class do titulo h2 no formulário html*/
 .titulo-formulario {
-    text-align: left; 
-    font-size: 24px; 
-    color: #fafafa; 
-    margin-bottom: 20px; 
+    text-align: left; /* Centraliza o titulo */
+    font-size: 24px; /* Aumenta o tamanho da fonte */
+    color: #fafafa; /* Define uma cor para o titulo  */
+    margin-bottom: 20px; /* Adiciona espaçamento abaixo do titulo */
 }
 
 /* Lista de pessoas */
@@ -62,5 +62,5 @@ body{
     font-style: italic; /* Adiciona estilo itálico */
     
     /* !!!!! definindo cor das LETRAS dos DADOS no container !!!!! */
-    color: #f7eded /* Define uma cor mais clara */
+    color: #0c0303 /* Define uma cor mais clara */
 }
