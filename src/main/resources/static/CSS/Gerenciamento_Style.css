@@ -15,54 +15,54 @@ form {
 .form-salvar-pessoa {
     max-width: 600px; /* Define a largura maxima para 600px */
     margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Adiciona um preenchimento interno de 20px */
+    background-color: #f7f7f7; /* Define um fundo claro para o formulário */
+    border-radius: 8px; /* Arredonda os cantos do formulário */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve ao redor do formulário */
 }
 
 .form-buscar_por_id {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Configura a largura máxima para 600px */
+    margin: 50px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
+    padding: 20px; /* Adiciona um preenchimento interno de 20px */
+    background-color: #f7f7f7; /* Define um fundo claro para o formulário */
+    border-radius: 8px; /* Arredonda os cantos do formulário */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve ao redor do formulário */
 }
 
 .form-busca-pessoa-id {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(105, 18, 18, 0.1);
-    padding: 20px;
-    width: 300px;
-    margin: 10px;
+    background-color: #fff; /* Define um fundo branco para o formulário  */
+    border: 1px solid #ddd; /* Bordas cinzas claras */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(105, 18, 18, 0.1); /* Sombra mais escura  */
+    padding: 20px; /* Espaço interno de 20px */
+    width: 300px; /* Define largura do formulário como 300px */
+    margin: 10px; /* Adiciona espaço em volta do formulário */
 }
 
 .btn_buscar_por_id {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Define a largura maxima como 600px */
+    margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
+    padding: 20px; /* Espaço interno de 20px  */
+    background-color: #f7f7f7;/* Fundo claro */
+    border-radius: 8px; /* Cantos arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/* Sombra leve */
 }
 
 .form-excluir_pessoa{
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Define a largura maxima como 600px */
+    margin: 50px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
+    padding: 20px; /* Espaço interno de 20px  */
+    background-color: #f7f7f7; /* Fundo claro */
+    border-radius: 8px; /* Cantos arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
 .btn_excluir {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Define a largura maxima como 600px */
+    margin: 50px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
+    padding: 20px; /* Espaço interno de 20px  */
+    background-color: #f7f7f7; /* Fundo claro */
+    border-radius: 8px; /* Cantos arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
