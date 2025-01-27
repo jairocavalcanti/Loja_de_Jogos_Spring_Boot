@@ -71,3 +71,24 @@ document.getElementById('form-buscar_por_id').addEventListener('submit', async (
    }
 });
 
+// função javascript definindo exclusão de usuário através de metodos definidos no backend java
+document.getElementById("form-excluir_pessoa").addEventListener('submit', async (e) => {
+   // metodo dedicado a evitar retornos padrão do navegador
+   e.preventDefault();
+   // variavel criada com intuito de armazenar valor do elemento "pessoa-id" na div html
+   const pessoaId = document.getElementById("pessoa-id").value;
+
+   // passando a rota do metodo de exclusão backend e o valor do do id como requerido no metodo
+   await fetch(`/pessoa/deletepessoa/${pessoaId}`, {
+      // define o metodo HTTP como DELETE
+      method: "DELETE",
+      headers: {
+         "Content-Type": 'application/json',
+      },
+      body: JSON.stringify({ id: pessoaId })
+   });
+   // chamando o metodo fetch para reiniciar a lista de usuários do sistema e atualiza-la após exclusão
+   fetchPessoas();
+   document.getElementById('form-excluir_pessoa').reset();
+});
+
