@@ -16,6 +16,7 @@ body {
     padding: 20px; /* Espaço ao redor do contêiner */
 }
 
+/*!!! Estiliza o formulário para usar o layout flexbox e organiza os elementos internos em coluna !!! */
 form {
     display: flex; /* Define o layout do formulário como flexbox */
     flex-direction: column; /* Isso vai alinhar os elementos em coluna */
