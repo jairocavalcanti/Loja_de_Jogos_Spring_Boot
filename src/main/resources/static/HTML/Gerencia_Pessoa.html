@@ -10,6 +10,7 @@
 
 <!-- div definida para salvar cadastro de usuário -->
 <body>
+    <div class = "layout-geral">
     <div class="form-salvar-pessoa">
         <div class="form-card">
             <h2 class="titulo-formulario">Adicionar Pessoa</h2>
@@ -26,19 +27,6 @@
                 <button type="submit" class="form-salvar-pessoa">Salvar Pessoa</button>
             </form>
         </div>
-    </div>
-
-    <!-- div definida para buscar usuario cadastrado pelo ID -->
-    <div class="form-buscar_por_id">
-        <h2>Buscar por id</h2>
-        <form id="form-buscar_por_id">
-            <label for="insert-id">ID da pessoa:</label>
-            <input type="number" id="insert-id" required><br>
-            <button type="submit" class="btn_buscar_por_id">Buscar pessoa</button>
-        </form>
-
-        <div class="form-busca-pessoa-id"></div>
-
     </div>
 
     <div class="form-alterar_pessoa">
@@ -60,6 +48,18 @@
         </form>
     </div>
 
+    <!-- div definida para buscar usuario cadastrado pelo ID -->
+    <div class="form-buscar_por_id">
+        <h2>Buscar por id</h2>
+        <form id="form-buscar_por_id">
+            <label for="insert-id">ID da pessoa:</label>
+            <input type="number" id="insert-id" required><br>
+            <button type="submit" class="btn_buscar_por_id">Buscar pessoa</button>
+        </form>
+
+        <div class="form-busca-pessoa-id"></div>
+
+    </div>
 
     <!-- div definida para excluir usuario através do ID -->
     <div class="form-excluir_pessoa">
@@ -70,7 +70,7 @@
             <button type="submit" class="btn_excluir">Excluir pessoa</button>
         </form>
     </div>
-
+</div>
 
     <div class="voltar-lista-link">
         <a href="Lista_Pessoas.html" class="voltar_lista_usuarios-btn">Voltar</a>

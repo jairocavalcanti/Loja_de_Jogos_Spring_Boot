@@ -6,6 +6,16 @@ body {
     padding: 0; /* Remove o preenchimento padrão do corpo */
 }
 
+/*Estilizando posição das divs da pagina html através de um conteiner que engloba todas elas*/
+.layout-geral {
+    display: flex; /* Ativa o layout flexbox */
+    flex-direction: row; /* Organiza os itens na horizontal */
+    gap: 20px; /* Adiciona espaço entre as divs */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: flex-start; /* Alinha os itens pelo topo */
+    padding: 20px; /* Espaço ao redor do contêiner */
+}
+
 form {
     display: flex; /* Define o layout do formulário como flexbox */
     flex-direction: column; /* Isso vai alinhar os elementos em coluna */
@@ -13,7 +23,7 @@ form {
 
 /* Container do formulário para salvar pessoa */
 .form-salvar-pessoa {
-    max-width: 600px; /* Define a largura maxima para 600px */
+    width: 200px; /* Define a largura maxima para 600px */
     margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
@@ -23,7 +33,7 @@ form {
 
 /*Regra de estilo aplicada para o container de buscar por id*/
 .form-buscar_por_id {
-    max-width: 600px; /* Configura a largura máxima para 600px */
+    width: 200px; /* Configura a largura máxima para 600px */
     margin: 50px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
@@ -38,13 +48,13 @@ form {
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 4px 8px rgba(105, 18, 18, 0.1); /* Sombra mais escura  */
     padding: 20px; /* Espaço interno de 20px */
-    width: 300px; /* Define largura do formulário como 300px */
+    width: 150px; /* Define largura do formulário como 150px */
     margin: 10px; /* Adiciona espaço em volta do formulário */
 }
 
 /*Regra de estilo aplicada ao botão utilizado para realizar a busca por ID */
 .btn_buscar_por_id {
-    max-width: 600px; /* Define a largura maxima como 600px */
+    width: 200px; /* Define a largura maxima como 600px */
     margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7;/* Fundo claro */
@@ -54,7 +64,7 @@ form {
 
 /*Regra de estilo aplicada para o container de alterar cadastro*/
 .form-alterar_pessoa{
-    max-width: 600px; /* Define a largura maxima para 600px */
+    width: 200px; /* Define a largura maxima para 600px */
     margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
@@ -64,7 +74,7 @@ form {
 
 /*Regra de estilo aplicada ao botão utilizado para realizar a alteração*/
 .btn_alterar{
-    max-width: 600px; /* Define a largura maxima como 600px */
+    width: 200px; /* Define a largura maxima como 600px */
     margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7;/* Fundo claro */
@@ -74,7 +84,7 @@ form {
 
 /*Regra de estilo aplicada para o container de excluir cadastro*/
 .form-excluir_pessoa{
-    max-width: 600px; /* Define a largura maxima como 600px */
+    width: 200px; /* Define a largura maxima como 600px */
     margin: 50px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7; /* Fundo claro */
@@ -84,7 +94,7 @@ form {
 
 /*Regra de estilo aplicada ao botão utilizado para realizar a exclusão*/
 .btn_excluir {
-    max-width: 600px; /* Define a largura maxima como 600px */
+    width: 200px; /* Define a largura maxima como 600px */
     margin: 50px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7; /* Fundo claro */

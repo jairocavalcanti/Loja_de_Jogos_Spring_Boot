@@ -2,6 +2,9 @@
 /*REGRAS DE ESTILO PARA BOTÃO QUE DIRECIONA Á CLASSE DE GERENCIAMENTO DE USUARIO*/
 
 .gerencia-btn {
+    position: fixed; /* Posiciona o botão fixamente na janela */
+    bottom: 20px; /* Distância da parte inferior */
+    right: 675px; /* Distância da lateral direita */
     display: inline-block; /* Faz o link funcionar como um botão */
     padding: 12px 20px; /* Adiciona espaçamento interno */
     background-color: #4d0747; /* Cor de fundo do botão */
