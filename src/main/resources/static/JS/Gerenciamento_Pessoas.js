@@ -92,3 +92,21 @@ document.getElementById("form-excluir_pessoa").addEventListener('submit', async 
    document.getElementById('form-excluir_pessoa').reset();
 });
 
+document.getElementById("form-alterar_pessoa").addEventListener('submit', async (e) => {
+   e.preventDefault();
+   const pessoaId = document.getElementById('update-cadastro-id').value;
+   const pessoaNome = document.getElementById('update-cadastro-nome').value;
+   const pessoaIdade = document.getElementById('update-cadastro-idade').value;
+   const pessoaCpf = document.getElementById('update-cadastro-cpf').value;
+
+   await fetch(`/pessoa/updatepessoa/${pessoaId}`, {
+      method: "PUT",
+      headers: {
+         "Content-Type" : 'application/json',
+      },
+      body: JSON.stringify({id: pessoaId, nome: pessoaNome, idade: pessoaIdade, cpf: pessoaCpf})
+   });
+   
+   fetchPessoas();
+   document.getElementById('form-alterar_pessoa').reset();
+});
