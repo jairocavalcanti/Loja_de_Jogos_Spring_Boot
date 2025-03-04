@@ -2,7 +2,7 @@ body{
     font-family: Arial, sans-serif; /* definindo fonte padrão do corpo da página */
     margin: 100; /* Remove margens padrão */
     padding: 0; /* Remove espaçamento padrão */
-    background-color: #da9fc8; /* Define uma cor de fundo clara */
+    background-color: #cf5b17; /* Define uma cor de fundo clara */
     color: #fcfcfc; /* Define a cor padrão do texto */
 }
 
@@ -20,7 +20,7 @@ body{
 .titulo-lista {
     text-align: center; /* Centraliza o título */
     font-size: 24px; /* Aumenta o tamanho da fonte */
-    color: #da0d84; /* Define uma cor mais escura para o titulo */
+    color: #050505; /* Define uma cor mais escura para o titulo */
     margin-bottom: 20px; /* Adiciona espaçamento abaixo do titulo */
 }
 
@@ -42,18 +42,18 @@ body{
 
 /* Estilização de cada item da lista */
 .pessoas-list li{
-    background: #d475a9; /* Fundo claro para os itens */
+    background: #cf5b17; /* Fundo claro para os itens */
     margin-bottom: 10px; /* Espaçamento entre os itens */
     padding: 10px 15px; /* Espaçamento interno nos itens */
     border-radius: 5px; /* Arredonda os cantos dos itens */
-    border: 1px solid #da0d84;
+    border: 1px solid #0e0d0c;
     transition: background-color 0.3 ease; /* suaviza mudança de cor no hover */
     color: rgb(0, 0, 0);
 }
 
 /* Efeito ao passar o mouse sobre os itens */
 .pessoas-list li:hover{
-    background: #b10e52; /* muda o fundo ao passar o mouse */
+    background: #ce7e3d; /* muda o fundo ao passar o mouse */
 }
 
 /* Mensagem de carregamento ou erro */
@@ -62,5 +62,5 @@ body{
     font-style: italic; /* Adiciona estilo itálico */
     
     /* !!!!! definindo cor das LETRAS dos DADOS no container !!!!! */
-    color: #0c0303 /* Define uma cor mais clara */
+    color: #f5f5f5 /* Define uma cor mais clara */
 }
