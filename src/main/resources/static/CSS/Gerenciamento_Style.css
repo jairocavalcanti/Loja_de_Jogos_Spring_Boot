@@ -1,7 +1,7 @@
 /* Estilização geral do corpo da pagina */
 body {
     font-family: Arial, sans-serif; /* Define a fonte padrão do texto como Arial ou, caso não esteja disponível, sans-serif  */ 
-    background-color: #da9fc8; /* Define a cor de fundo do corpo da página com algum tom de cor  */
+    background-color: #cf5b17; /* Define a cor de fundo do corpo da página com algum tom de cor  */
     margin: 0; /* Remove a margem padrão do corpo  */
     padding: 0; /* Remove o preenchimento padrão do corpo */
 }
@@ -25,17 +25,26 @@ form {
 /* Container do formulário para salvar pessoa */
 .form-salvar-pessoa {
     width: 200px; /* Define a largura maxima para 600px */
-    margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
+    margin: 150px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
-    background-color: #f7f7f7; /* Define um fundo claro para o formulário */
+    background-color: #f1f1f1; /* Define um fundo claro para o formulário */
     border-radius: 8px; /* Arredonda os cantos do formulário */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve ao redor do formulário */
+}
+
+.btn_salvar_pessoa{
+    width: 200px; /* Define a largura maxima como 600px */
+    margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
+    padding: 20px; /* Espaço interno de 20px  */
+    background-color: #f0eaea;/* Fundo claro */
+    border-radius: 8px; /* Cantos arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/* Sombra leve */
 }
 
 /*Regra de estilo aplicada para o container de buscar por id*/
 .form-buscar_por_id {
     width: 200px; /* Configura a largura máxima para 600px */
-    margin: 50px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
+    margin: 150px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
     border-radius: 8px; /* Arredonda os cantos do formulário */
@@ -44,7 +53,7 @@ form {
 
 /*Regra de estilo aplicada ao card onde os dados da pessoa procurada vão ser mostrados*/
 .form-busca-pessoa-id {
-    background-color: #c449af; /* Define uma cor de fundo para o formulário  */
+    background-color: #ce7e3d; /* Define uma cor de fundo para o formulário  */
     border: 1px solid #ddd; /* Bordas cinzas claras */
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 4px 8px rgba(105, 18, 18, 0.1); /* Sombra mais escura  */
@@ -56,7 +65,7 @@ form {
 /*Regra de estilo aplicada ao botão utilizado para realizar a busca por ID */
 .btn_buscar_por_id {
     width: 200px; /* Define a largura maxima como 600px */
-    margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
+    margin: 25px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7;/* Fundo claro */
     border-radius: 8px; /* Cantos arredondadas */
@@ -66,7 +75,7 @@ form {
 /*Regra de estilo aplicada para o container de alterar cadastro*/
 .form-alterar_pessoa{
     width: 200px; /* Define a largura maxima para 600px */
-    margin: 50px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
+    margin: 150px auto; /* Adiciona uma margem superior/inferior de 50px e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
     border-radius: 8px; /* Arredonda os cantos do formulário */
@@ -76,7 +85,7 @@ form {
 /*Regra de estilo aplicada ao botão utilizado para realizar a alteração*/
 .btn_alterar{
     width: 200px; /* Define a largura maxima como 600px */
-    margin: 50px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
+    margin: 35px auto;/* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7;/* Fundo claro */
     border-radius: 8px; /* Cantos arredondadas */
@@ -86,7 +95,7 @@ form {
 /*Regra de estilo aplicada para o container de excluir cadastro*/
 .form-excluir_pessoa{
     width: 200px; /* Define a largura maxima como 600px */
-    margin: 50px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
+    margin: 150px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7; /* Fundo claro */
     border-radius: 8px; /* Cantos arredondadas */
