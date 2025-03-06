@@ -1,0 +1,7 @@
+body{
+    font-family: Arial, sans-serif; /* definindo fonte padrão do corpo da página */
+    margin: 100; /* Remove margens padrão */
+    padding: 0; /* Remove espaçamento padrão */
+    background-color: #cf5b17; /* Define uma cor de fundo clara */
+    color: #fcfcfc; /* Define a cor padrão do texto */
+}
