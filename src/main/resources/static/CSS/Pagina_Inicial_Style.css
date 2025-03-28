@@ -1,7 +1,37 @@
 body{
     font-family: Arial, sans-serif; /* definindo fonte padrão do corpo da página */
-    margin: 100; /* Remove margens padrão */
+    margin: 100px; /* Remove margens padrão */
     padding: 0; /* Remove espaçamento padrão */
     background-color: #cf5b17; /* Define uma cor de fundo clara */
     color: #fcfcfc; /* Define a cor padrão do texto */
+}
+
+.titulo h2{
+    font-size: 40px; /* Aumenta o tamanho da fonte */
+    position: absolute;
+    top: 2%; /* Alinha no topo */
+    left: 35%; /* Alinha à esquerda */
+}
+
+.login-container{ 
+    display: flex; 
+    max-width: 300px; /* define a largura máxima do container */
+    margin: 300px auto; /* Centraliza horizontalmente com espaçamento vertical */
+    padding: 20px; /* Adiciona espaçamento interno */
+    background: #fcfafa; /* Define o fundo branco */
+    border-radius: 8px; /* Arredonda os cantos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
+}
+
+.login{
+    display: flex;
+    text-align: left; /* Centraliza o título */
+    font-size: 17px; /* Aumenta o tamanho da fonte */
+    color: #cf2525; /* Define uma cor mais escura para o titulo */
+    margin-bottom: 20px; /* Adiciona espaçamento abaixo do titulo */
+}
+
+.login input {
+    display: block;
+    margin: 0 auto; /* Isso centraliza os inputs */
 }

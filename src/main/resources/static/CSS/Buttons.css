@@ -2,19 +2,14 @@
 /*REGRAS DE ESTILO PARA BOTÃO QUE DIRECIONA Á CLASSE DE GERENCIAMENTO DE USUARIO*/
 
 .gerencia-btn {
-    position: fixed; /* Posiciona o botão fixamente na janela */
-    bottom: 20px; /* Distância da parte inferior */
-    right: 675px; /* Distância da lateral direita */
-    display: inline-block; /* Faz o link funcionar como um botão */
-    padding: 12px 20px; /* Adiciona espaçamento interno */
-    background-color: #050505; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto */
-    font-size: 16px; /* Tamanho do texto */
-    font-weight: bold; /* Texto em negrito */
-    border-radius: 8px; /* Arredonda os cantos */
-    text-decoration: none; /* Remove o sublinhado do link */
-    text-align: center; /* Centraliza o texto */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza transições */
+    position: fixed;
+    bottom: 20px;
+    right: 5%;
+    padding: 10px 15px;
+    background: #050505;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
 }
 
 .gerencia-btn:hover {
@@ -27,6 +22,26 @@
     transform: scale(1); /* Retorna ao tamanho original */
 }
 
+.return-btn {
+    position: fixed; /* Mantém o botão fixo na tela, mesmo ao rolar a página */
+    bottom: 20px; /* Define a distância do botão até a parte inferior da tela */
+    left: 5%; /* Posiciona o botão no meio da tela (horizontalmente) */
+    padding: 10px 15px; /* Adiciona espaço interno ao botão (10px em cima/baixo e 15px nas laterais) */
+    background: #050505; /* Define a cor de fundo preta */
+    color: #fff; /* Define a cor do texto como branca */
+    border-radius: 8px; /* Arredonda os cantos do botão */
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+.return-btn:hover {
+    background-color: #c5781f; /* Cor do botão quando passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+}
+
+.return-btn:active {
+    background-color: #0a0a0a; /* Cor do botão quando clicado */
+    transform: scale(1); /* Retorna ao tamanho original */
+}
 
 /*REGRAS DE ESTILO PARA BOTÃO DE VOLTAR PARA LISTA DE USUARIOS*/
 
@@ -35,13 +50,11 @@
     position: fixed; /* Posiciona o botão fixamente na janela */
     bottom: 20px; /* Distância da parte inferior */
     right: 20px; /* Distância da lateral direita */
-   
     display: inline-block; /* Faz o link funcionar como um botão */
     padding: 12px 20px; /* Adiciona espaçamento interno */
     background-color: #0e010c; /* Cor de fundo do botão */
     color: #fff; /* Cor do texto */
     font-size: 16px; /* Tamanho do texto */
-    font-weight: bold; /* Texto em negrito */
     border-radius: 8px; /* Arredonda os cantos */
     text-decoration: none; /* Remove o sublinhado do link */
     text-align: center; /* Centraliza o texto */

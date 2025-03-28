@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Inicial</title>
     <link rel="stylesheet" href="/CSS/Pagina_Inicial_Style.css">
 </head>
-<body>    
-    
-    <h2>Pagina Inicial do sistema</h2>
-    
+
+
+
+<body>
+
+    <div class="titulo">
+        <h2> >>Pagina Inicial do sistema>></h2>
+    </div>
+
     <div class="login-container">
         <h2>Login</h2>
-        <form id="login-form">
-            <label for="cpf">CPF:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-            <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="message"></p>
+        <div class="login">
+            <form id="login-form">
+                <label for="nome">NOME:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <p id="message"></p>
+        </div>
+        <h2 class="titulo-lista"></h2>
     </div>
 
     <script src="/JS/Login.js"></script>
 
 </body>
+
 </html>

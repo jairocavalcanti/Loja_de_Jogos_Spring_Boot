@@ -44,7 +44,7 @@ form {
 /*Regra de estilo aplicada para o container de buscar por id*/
 .form-buscar_por_id {
     width: 200px; /* Configura a largura máxima para 600px */
-    margin: 290px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
+    margin: 230px auto; /* Adiciona espaço acima/abaixo e centraliza horizontalmente */
     padding: 20px; /* Adiciona um preenchimento interno de 20px */
     background-color: #f7f7f7; /* Define um fundo claro para o formulário */
     border-radius: 8px; /* Arredonda os cantos do formulário */
@@ -95,7 +95,7 @@ form {
 /*Regra de estilo aplicada para o container de excluir cadastro*/
 .form-excluir_pessoa{
     width: 200px; /* Define a largura maxima como 600px */
-    margin: 290px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
+    margin: 235px auto; /* Centraliza horizontalmente e adicione margem vertical de 50px */
     padding: 20px; /* Espaço interno de 20px  */
     background-color: #f7f7f7; /* Fundo claro */
     border-radius: 8px; /* Cantos arredondadas */
