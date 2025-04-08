@@ -19,6 +19,10 @@ async function fetchPessoas() {
    });
 }
 
+
+// Tornando a função acessível globalmente
+window.fetchPessoas = fetchPessoas;
+
 // Adiciona um evento ao documento que aguarda o carregamento completo do DOM
 // e chama a função fetchPessoas assim que o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', fetchPessoas)
