@@ -1,5 +1,6 @@
 package com.crudFrontend.crud.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,8 +14,14 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
     private String nome;
+    
+    @Column(nullable = false)
     private Integer idade;
+   
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     

@@ -6,4 +6,5 @@ import com.crudFrontend.crud.Model.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
     Optional<Pessoa> findByCpfAndNome(String cpf, String nome);
+    Optional<Pessoa> findByCpf(String cpf);
 }
