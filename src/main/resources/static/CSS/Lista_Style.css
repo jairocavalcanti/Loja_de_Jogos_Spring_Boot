@@ -48,7 +48,8 @@ body{
     border-radius: 5px; /* Arredonda os cantos dos itens */
     border: 1px solid #0e0d0c;
     transition: background-color 0.3 ease; /* suaviza mudança de cor no hover */
-    color: rgb(0, 0, 0);
+   /* !!!!! definindo cor das LETRAS dos DADOS no container !!!!! */
+    color: rgb(7, 6, 6);
 }
 
 /* Efeito ao passar o mouse sobre os itens */
@@ -60,7 +61,4 @@ body{
 .pessoas-list li:first-child {
     text-align: left; /* Centraliza a mensagem */
     font-style: italic; /* Adiciona estilo itálico */
-    
-    /* !!!!! definindo cor das LETRAS dos DADOS no container !!!!! */
-    color: #f5f5f5 /* Define uma cor mais clara */
 }
