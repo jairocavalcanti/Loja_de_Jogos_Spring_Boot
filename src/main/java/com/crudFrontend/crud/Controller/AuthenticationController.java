@@ -25,6 +25,6 @@ public class AuthenticationController {
         boolean autenticado = authenticationService.autenticar(Loginrequest.getCpf(), Loginrequest.getNome());
         // "?" abaixo se trata de um operador ternário e ele é responsável por decidir qual resposta retornar com base no valor booleano
         // se o valor em questão for 'True', retornará "login bem sucedido" caso contrário 'False' retornará "Usuário nao encontrado!"
-        return autenticado ? "Login bem-sucedido!" : "Usuário não encontrado!";
+        return autenticado ? "Login bem-sucedido!" : "Usuário não existente na base de dados!";
     }
 }

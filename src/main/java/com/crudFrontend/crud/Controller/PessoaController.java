@@ -60,6 +60,7 @@ public class PessoaController {
     @DeleteMapping("/deletepessoa/{id}")
     public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
         pessoaService.deletePessoa(id);
+        // .ok().build(); ?
         return ResponseEntity.noContent().build();
     }
 
