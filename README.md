@@ -13,11 +13,6 @@ Novas funcionalidades serão adicionadas conforme a evolução do projeto
 - **MySQL**
 - **Maven**
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-
 ## Dependências Maven
 
 O projeto utiliza as seguintes dependências definidas no `pom.xml`:
