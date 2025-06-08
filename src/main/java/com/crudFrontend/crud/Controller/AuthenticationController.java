@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 // a anotação requestmapping é responsável por definir a rota de acesso aos metodos da classe
 @RequestMapping("/login")
 public class AuthenticationController {
-    // a anotação autowired é responsavel por ?
+    // a anotação autowired é responsavel pela injeção de dependencia automática
+    // evita a criação de objetos com "new"
     @Autowired
     private AuthenticationService authenticationService;
 
