@@ -17,4 +17,8 @@ public class JogoService {
     public List<Jogo> getAllJogos() {
         return jogoRepository.findAll();
     }
+
+    public Jogo savejogo(Jogo jogo) {
+        return jogoRepository.save(jogo);
+    }
 }
