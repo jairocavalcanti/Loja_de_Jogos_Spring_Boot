@@ -29,7 +29,6 @@ public class Carrinho {
         return itens.stream()
         .map(item -> item.getJogo().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())))
         .reduce(BigDecimal.ZERO, BigDecimal::add);
-        
     }
     
 }
