@@ -1,6 +1,7 @@
 package com.crudFrontend.crud.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class JogoService {
 
     public List<Jogo> getAllJogos() {
         return jogoRepository.findAll();
+    }
+
+    public Optional<Jogo> getJogoById(Long id){
+        return jogoRepository.findById(id);
     }
 
     public Jogo savejogo(Jogo jogo) {
