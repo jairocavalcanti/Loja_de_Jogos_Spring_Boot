@@ -10,5 +10,7 @@ import com.crudFrontend.crud.Model.Pessoa;
 
 @Repository
 public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {
-    Optional<Carrinho> findByUsuario(Pessoa pessoa);
+    // Esse metodo busca por um carrinho que pertença a pessoa informada
+    // Um carrinho cujo campo pessoa seja igual ao objeto Pessoa recebido como argumento
+    Optional<Carrinho> findByPessoa(Pessoa pessoa);
 }

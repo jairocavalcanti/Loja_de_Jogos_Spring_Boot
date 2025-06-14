@@ -16,19 +16,28 @@ import jakarta.persistence.OneToOne;
 public class Carrinho {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
     private List<ItemCarrinho> itens = new ArrayList<>();
 
     @OneToOne
-    private Pessoa usuario;
+    private Pessoa pessoa; // <--- este é o campo que o "findByPessoa" do repository faz referência
 
-    public BigDecimal getTotal(){
-        return itens.stream()
-        .map(item -> item.getJogo().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())))
-        .reduce(BigDecimal.ZERO, BigDecimal::add);
+    public Carrinho() {
+
     }
-    
+
+    public Carrinho(Pessoa pessoa) {
+        this.pessoa = pessoa;
+        this.itens = new ArrayList<>();
+    }
+
+    public BigDecimal getTotal() {
+        return itens.stream()
+                .map(item -> item.getJogo().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 }
