@@ -1,7 +1,10 @@
-# CRUD com Spring Boot e Front-end
+# Loja de jogos Spring Boot 
 
-Este projeto é um sistema de cadastro de pessoas com back-end em **Spring Boot** e front-end simples utilizando HTML, CSS e JavaScript. A aplicação permite cadastrar, listar e gerenciar pessoas em um banco de dados MySQL.
-Novas funcionalidades serão adicionadas conforme a evolução do projeto
+Projeto de loja de jogos com cadastro e verificação de usuário
+O projeto consiste em uma loja de jogos que funciona a partir de itens inseridos em um carrinho
+O objeto de carrinho com os itens selecionados é associado com o objeto pessoa no banco de dados
+Esse projeto NÃO utiliza front end no momento, os testes sao feitos através de requisições no postman 
+O projeto está sendo devidamente organizado para uma possivel implementação de front end no futuro
 
 ## Tecnologias Utilizadas
 
