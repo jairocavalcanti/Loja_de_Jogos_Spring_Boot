@@ -40,7 +40,7 @@ public class CarrinhoService {
         Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
           .orElseGet(() -> carrinhoRepository.save(new Carrinho(pessoa)));
 
-          return new CarrinhoComNomeDTO(pessoa.getNome(),carrinho);
+          return new CarrinhoComNomeDTO(pessoa.getNome(),carrinho,pessoa.getCpf());
     }
 
 }

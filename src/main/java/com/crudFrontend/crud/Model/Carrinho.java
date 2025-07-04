@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,9 @@ public class Carrinho {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Pessoa pessoa; // <--- este é o campo que o "findByPessoa" do repository faz referência
 
+    @Column(name = "usuario_cpf", nullable = false)
+    private String usuarioCpf;
+
     public Carrinho() {
 
     }
@@ -34,6 +38,7 @@ public class Carrinho {
     public Carrinho(Pessoa pessoa) {
         this.pessoa = pessoa;
         this.itens = new ArrayList<>();
+        this.usuarioCpf = pessoa.getCpf();
     }
 
     public BigDecimal getTotal() {
