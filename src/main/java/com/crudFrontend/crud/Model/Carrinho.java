@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -23,6 +24,7 @@ public class Carrinho {
     private List<ItemCarrinho> itens = new ArrayList<>();
 
     @OneToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Pessoa pessoa; // <--- este é o campo que o "findByPessoa" do repository faz referência
 
     public Carrinho() {
