@@ -37,9 +37,16 @@ public class Carrinho {
     }
 
     public BigDecimal getTotal() {
-        return itens.stream()
-                .map(item -> item.getJogo().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+       BigDecimal soma = BigDecimal.ZERO;
+       for (ItemCarrinho item : itens){
+           BigDecimal subtotal = item.getJogo().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade()));
+           soma = soma.add(subtotal);
+       }
+       return soma;
+    }
+
+    public List<ItemCarrinho> getItens() {
+        return itens;
     }
 
 }
