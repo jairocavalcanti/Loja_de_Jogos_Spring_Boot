@@ -1,5 +1,7 @@
 package com.crudFrontend.crud.Model;
 
+// import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class ItemCarrinho {
     private int quantidade;
 
     @ManyToOne
+   // @JsonBackReference  // assegura que o jackson não serialize o objeto carrinho (evita loop infinito)
     private Carrinho carrinho;
 
     public Long getId() {
