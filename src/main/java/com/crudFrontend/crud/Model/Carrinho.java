@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +24,7 @@ public class Carrinho {
     private Long id;
 
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
+   // @JsonManagedReference // assegura que o jackson serialize a lista de itens
     private List<ItemCarrinho> itens = new ArrayList<>();
 
     @OneToOne
@@ -50,6 +53,9 @@ public class Carrinho {
        return soma;
     }
 
+    // para que o atributo seja mostrado no modelo JSON do objeto, ele deve possuir metodos de acesso get 
+    // na classe de entidade
+    // mapeamento automático para JSON com Jackson
     public List<ItemCarrinho> getItens() {
         return itens;
     }
