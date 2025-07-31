@@ -23,6 +23,10 @@ public class JogoService {
         return jogoRepository.findById(id);
     }
 
+    public Optional<Jogo> getJogoByNome(String nome){
+        return jogoRepository.findByNome(nome);
+    }
+
     public Jogo savejogo(Jogo jogo) {
         return jogoRepository.save(jogo);
     }
