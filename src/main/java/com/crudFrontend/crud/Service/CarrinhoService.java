@@ -1,6 +1,5 @@
 package com.crudFrontend.crud.Service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,34 +37,35 @@ public class CarrinhoService {
     Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
         .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
 
-      List<ItemCarrinhoDTO> itensDTO = new ArrayList<>();
+    List<ItemCarrinhoDTO> itensDTO = new ArrayList<>();
 
-      // para cada objeto ItemCarrinho "item" na lista: carrinho.getItens()
-      for (ItemCarrinho item : carrinho.getItens()) {
-        // novo objeto jogo armazenando jogo presente na lista de itens
-        Jogo jogo = item.getJogo();
-        // lista de DTO de itens adicionando novo objeto dto na lista tipo ItemCarrinho com atributos
-        // de objeto jogo para visualização
-        // abaixo estamos adicionando um DTO do objeto jogo dentro de uma lista do tipo
-        // item carrinho DTO
-        itensDTO.add(new ItemCarrinhoDTO(
-            jogo.getId(),
-            jogo.getNome(),
-            jogo.getDescricao(),
-            item.getQuantidade(),
-            jogo.getPreco()
-        ));
+    // para cada objeto ItemCarrinho "item" na lista: carrinho.getItens()
+    for (ItemCarrinho item : carrinho.getItens()) {
+      // novo objeto jogo armazenando jogo presente na lista de itens
+      Jogo jogo = item.getJogo();
+      // lista de DTO de itens adicionando novo objeto dto na lista tipo ItemCarrinho
+      // com atributos
+      // de objeto jogo para visualização
+      // abaixo estamos adicionando um DTO do objeto jogo dentro de uma lista do tipo
+      // item carrinho DTO
+      itensDTO.add(new ItemCarrinhoDTO(
+          jogo.getId(),
+          jogo.getNome(),
+          jogo.getDescricao(),
+          item.getQuantidade(),
+          jogo.getPreco()));
     }
 
-    // finalmente retornando um novo DTO que possui a lista dos DTOS de jogo feita anteriormente (linha acima)
-    // Esse DTO serve para visualização tanto do usuario que adicionou o item no carrinho quanto que para a visualização
-    // do total (valor) e dos itens adicionados 
+    // finalmente retornando um novo DTO que possui a lista dos DTOS de jogo feita
+    // anteriormente (linha acima)
+    // Esse DTO serve para visualização tanto do usuario que adicionou o item no
+    // carrinho quanto que para a visualização
+    // do total (valor) e dos itens adicionados
     return new CarrinhoComNomeDTO(
         pessoa.getNome(),
         pessoa.getCpf(),
         carrinho.getTotal(),
-        itensDTO
-    );
+        itensDTO);
   }
 
   public String CriarCarrinho(String cpf) {
@@ -144,4 +144,45 @@ public class CarrinhoService {
     }
     carrinhoRepository.save(carrinho);
   }
+
+  public void ExcluirItemCarrinho(String cpf, Long Idjogo, int quantidade) {
+
+    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
+        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+
+    Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
+        .orElseGet(() -> carrinhoRepository.save(new Carrinho(pessoa)));
+
+    ItemCarrinho itemExistente = null;
+
+    for (ItemCarrinho item : carrinho.getItens()) {
+      if (item.getJogo().getId().equals(Idjogo)) {
+        itemExistente = item;
+        break;
+      }
+    }
+
+    if (itemExistente != null) {
+      int novaQuantidade = itemExistente.getQuantidade() - quantidade;
+
+      if (novaQuantidade > 0) {
+        itemExistente.setQuantidade(novaQuantidade);
+      } else {
+        carrinho.getItens().remove(itemExistente); // Remove o item do carrinho
+      }
+      carrinhoRepository.save(carrinho); // Salva o carrinho atualizado
+    }
+  }
+
+  public void ExcluirCarrinho(String cpf) {
+
+    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
+        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+
+    Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
+        .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
+
+    carrinhoRepository.delete(carrinho);
+  }
+
 }
