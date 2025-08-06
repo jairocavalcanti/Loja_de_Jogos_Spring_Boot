@@ -7,9 +7,11 @@ import com.crudFrontend.crud.Service.CarrinhoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,4 +43,21 @@ public class CarrinhoController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{cpf}/excluirItem")
+    public ResponseEntity<Void> excluirItem(@PathVariable String cpf,
+            @RequestParam Long idJogo,
+            @RequestParam int quantidade) {
+        carrinhoservice.ExcluirItemCarrinho(cpf, idJogo, quantidade);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{cpf}/excluirCarrinho")
+    public ResponseEntity<Void> excluircarrinho(@PathVariable String cpf) {
+        carrinhoservice.ExcluirCarrinho(cpf);
+        return ResponseEntity.ok().build();
+    }
+
 }
+
+
+
