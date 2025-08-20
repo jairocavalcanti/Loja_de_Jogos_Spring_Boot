@@ -19,6 +19,10 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
+    public Optional<Pessoa> getByCpfandNome(String cpf, String nome){
+        return pessoaRepository.findByCpfAndNome(cpf, nome);
+    }
+
     //A implementação de um optional define que o metodo pode ou não ter retorno
     public Optional<Pessoa> getPessoaById(Long id){
         return pessoaRepository.findById(id);

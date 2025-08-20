@@ -1,6 +1,7 @@
 package com.crudFrontend.crud.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crudFrontend.crud.DTO.PessoaDTO;
 import com.crudFrontend.crud.Model.Pessoa;
 import com.crudFrontend.crud.Service.PessoaService;
 
@@ -46,10 +48,20 @@ public class PessoaController {
     }
 
     @PostMapping("/postpessoa")
-    public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa) {
+    public ResponseEntity<PessoaDTO> createPessoa(@RequestBody Pessoa pessoa) {
         // o método retorna um status HTTP de objeto criado juntamente com o corpo do
         // objeto que foi criado
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.savePessoa(pessoa));
+        Optional<Pessoa> pessoa3 = pessoaService.getByCpfandNome(pessoa.getCpf(), pessoa.getNome());
+
+        if(pessoa3.isPresent()){
+            PessoaDTO pessoa2 = new PessoaDTO(null, null, "Pessoa já existe no banco de dados!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa2);
+        }
+
+        PessoaDTO pessoa2 = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), "pessoa criada com sucesso!");
+        pessoaService.savePessoa(pessoa);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoa2);
+        // return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.savePessoa(pessoa));
     }
 
     @PutMapping("/updatepessoa/{id}")

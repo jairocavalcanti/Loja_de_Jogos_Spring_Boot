@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.crudFrontend.crud.DTO.ErrorResponseDTO;
 
+// Sempre que algum controller lançar uma RuntimeException então essa classe será acionada
 @ControllerAdvice
 public class GlobalExceptionHandler {
     
