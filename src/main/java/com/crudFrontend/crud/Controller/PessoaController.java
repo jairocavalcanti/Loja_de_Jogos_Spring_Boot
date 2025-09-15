@@ -53,9 +53,15 @@ public class PessoaController {
         // objeto que foi criado
         Optional<Pessoa> pessoa3 = pessoaService.getByCpfandNome(pessoa.getCpf(), pessoa.getNome());
 
+
         if(pessoa3.isPresent()){
             PessoaDTO pessoa2 = new PessoaDTO(null, null, "Pessoa já existe no banco de dados!");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa2);
+        }
+
+        if(pessoa.getCpf().length() < 11){
+            PessoaDTO pessoa4 = new PessoaDTO(null, null, "cpf inválido!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa4);
         }
 
         PessoaDTO pessoa2 = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), "pessoa criada com sucesso!");
