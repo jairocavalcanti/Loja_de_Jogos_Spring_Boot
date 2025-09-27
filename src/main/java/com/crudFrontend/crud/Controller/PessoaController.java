@@ -59,10 +59,29 @@ public class PessoaController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa2);
         }
 
+        //COLOCAR VERFIICAÇÃO NUMÉRICA
+
         if(pessoa.getCpf().length() < 11){
             PessoaDTO pessoa4 = new PessoaDTO(null, null, "cpf inválido!");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa4);
         }
+
+        if(pessoa.getIdade() > 120){
+            PessoaDTO pessoa5 = new PessoaDTO(null, null, "Idade inválida!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa5);
+        }
+
+        for(int i = 0; i< pessoa.getCpf().length(); i++){
+            char numeros_detectaveis = pessoa.getCpf().charAt(i);
+            if(!Character.isDigit(numeros_detectaveis)){
+                PessoaDTO pessoa20 = new PessoaDTO(null, null, "cpf nao pode conter caracteres!");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa20);
+            }
+        }
+
+    /*  if(!pessoa.getCpf().matches("\\d+")){
+            
+    }*/ 
 
         PessoaDTO pessoa2 = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), "pessoa criada com sucesso!");
         pessoaService.savePessoa(pessoa);
