@@ -20,6 +20,9 @@ public class Jogo {
     
     @Column(nullable = false)
     private String descricao;
+
+    @Column()
+    private String urlimage;
     
     @Column(nullable = false)
     private BigDecimal preco;
@@ -54,6 +57,14 @@ public class Jogo {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
+    }
+
+    public String getUrlimage() {
+        return urlimage;
+    }
+
+    public void setUrlimage(String urlimage) {
+        this.urlimage = urlimage;
     }
 
 }
