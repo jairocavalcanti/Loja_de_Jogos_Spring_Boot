@@ -44,7 +44,7 @@ public class JogoController {
         Optional<Jogo> jogo = jogoservice.getJogoByNome(nome);
 
         if (jogo.isPresent()) {
-            JogoResponseDTO dto = new JogoResponseDTO("jogo econtrado!", jogo.get() );
+            JogoResponseDTO dto = new JogoResponseDTO("jogo encontrado!", jogo.get() );
             return ResponseEntity.ok(dto);
         } else {
             JogoResponseDTO dto2 = new JogoResponseDTO("jogo não encontrado", null);
