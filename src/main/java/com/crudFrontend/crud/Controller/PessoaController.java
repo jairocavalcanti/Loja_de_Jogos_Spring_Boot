@@ -27,7 +27,7 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping()
+    @GetMapping("/getpessoa")
     public List<Pessoa> getAllPessoas() {
         return pessoaService.getAllPessoas();
     }
@@ -78,10 +78,6 @@ public class PessoaController {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa20);
             }
         }
-
-    /*  if(!pessoa.getCpf().matches("\\d+")){
-            
-    }*/ 
 
         PessoaDTO pessoa2 = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), "pessoa criada com sucesso!");
         pessoaService.savePessoa(pessoa);
