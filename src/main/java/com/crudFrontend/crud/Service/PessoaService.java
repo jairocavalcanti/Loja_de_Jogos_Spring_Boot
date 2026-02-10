@@ -38,6 +38,7 @@ public class PessoaService {
         pessoa.setNome(pessoaAtualizada.getNome());
         pessoa.setIdade(pessoaAtualizada.getIdade());
         pessoa.setCpf(pessoaAtualizada.getCpf());
+        pessoa.setSenha(pessoaAtualizada.getSenha());
         return pessoaRepository.save(pessoa);
     }
 
