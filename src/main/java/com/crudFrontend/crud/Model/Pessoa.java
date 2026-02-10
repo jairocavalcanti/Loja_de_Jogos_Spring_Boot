@@ -24,6 +24,7 @@ public class Pessoa {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    private String senha;
     
     public Long getId() {
         return id;
@@ -57,40 +58,12 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
+    public String getSenha() {
+      return senha;
+    }
 
-    /*import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { PessoaService, Pessoa } from '../../services/pessoa.service';
-
-@Component({
-  selector: 'app-pessoa-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './pessoa-list.html',
-  styleUrls: ['./pessoa-list.css']
-})
-export class PessoaList implements OnInit {
-
-  pessoas: Pessoa[] = [];
-  carregando = true;
-
-  constructor(private pessoaService: PessoaService) {}
-
-  ngOnInit(): void {
-    this.pessoaService.getPessoas().subscribe({
-      next: (data) => {
-        this.pessoas = data;
-        this.carregando = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar pessoas', err);
-        this.carregando = false;
-      }
-    });
-  }
-}
- */
-
+    public void setSenha(String senha) {
+      this.senha = senha;
+    }
 
 }
