@@ -25,6 +25,8 @@ public class Pessoa {
     private String cpf;
 
     private String senha;
+
+    private String gmail;
     
     public Long getId() {
         return id;
@@ -64,6 +66,14 @@ public class Pessoa {
 
     public void setSenha(String senha) {
       this.senha = senha;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
 }
