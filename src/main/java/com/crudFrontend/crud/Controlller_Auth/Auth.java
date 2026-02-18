@@ -2,11 +2,9 @@ package com.crudFrontend.crud.Controlller_Auth;
 
 import java.util.Optional;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,6 +73,7 @@ public class Auth {
         return ResponseEntity.badRequest().build();
     }
     
+/* 
     @PostMapping("/login2")
     public ResponseEntity<DTOresposta> postMethodName(@RequestBody LoginRequest body) {
         UsernamePasswordAuthenticationToken authtoken= new UsernamePasswordAuthenticationToken(body.gmail(), body.senha());
@@ -87,7 +86,7 @@ public class Auth {
         
         return ResponseEntity.ok(new DTOresposta(token, pessoa.getNome()));
     }
-    
+*/
     
 
 }
