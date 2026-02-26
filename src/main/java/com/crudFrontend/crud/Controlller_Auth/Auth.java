@@ -1,6 +1,8 @@
 package com.crudFrontend.crud.Controlller_Auth;
 
-import java.util.Optional;
+import org.apache.tomcat.util.descriptor.web.LoginConfig;
+
+//import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import com.crudFrontend.crud.Records.DTOregistro;
 import com.crudFrontend.crud.Records.DTOresposta;
 import com.crudFrontend.crud.Records.LoginRequest;
 import com.crudFrontend.crud.Records.RespostaErro;
+import com.crudFrontend.crud.GlobalException.UsuarioJaExistenteException;
 import com.crudFrontend.crud.Model.Pessoa;
 import com.crudFrontend.crud.Repository.PessoaRepository;
 import com.crudFrontend.crud.Security.TokenService;
@@ -27,7 +30,7 @@ public class Auth {
    // @Autowired
    // private AuthenticationManager authenticationManager;
    
-    private AuthenticationManager authenticationManager;
+    // private AuthenticationManager authenticationManager;
 
     private final PessoaRepository repository;
 
@@ -39,26 +42,27 @@ public class Auth {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.service = service;
-        this.authenticationManager = authenticationManager;
+        // this.authenticationManager = authenticationManager;
     }
 
     // SENHA DO BIORNO: "VALHALLA"
 
+    //LOGIN DEVE REQUERIR EMAIL BRO! 
     @PostMapping("/login")
     // ? - generic type (classes, records , lists ...)
     public ResponseEntity<?> login(@RequestBody LoginRequest body) {
-        Pessoa user = this.repository.findByCpf(body.cpf()).orElseThrow(() -> new RuntimeException("User not found"));
-        if (passwordEncoder.matches(body.senha(), user.getSenha())) {
+        Pessoa user = this.repository.findByCpfAndGmail(body.cpf(), body.gmail()).orElseThrow(() -> new RuntimeException("User not found"));
+        if (passwordEncoder.matches(body.senha(), user.getSenha()) && user.getGmail() != null) {
             String token = this.service.generateToken(user);
-            return ResponseEntity.ok(new DTOresposta(user.getNome(), token));
+            return ResponseEntity.ok(new LoginRequest(user.getCpf(), user.getGmail(), token));
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RespostaErro("unauthorized"));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RespostaErro("Login não autorizado, verifique email ou senha!"));
     }
 
     @PostMapping("/register")
     public ResponseEntity<DTOresposta> registraResponseEntity(@RequestBody DTOregistro body) {
-        Optional<Pessoa> pessoa = this.repository.findByCpf(body.cpf());
-        if(pessoa.isEmpty()){
+        this.repository.findByCpf(body.cpf()).ifPresent(p -> {throw new UsuarioJaExistenteException("Usuário Já existente!"); });
+       // if(pessoa.isEmpty()){
             Pessoa nova_pessoa = new Pessoa();
             nova_pessoa.setSenha(passwordEncoder.encode(body.senha()));
             nova_pessoa.setCpf(body.cpf());
@@ -68,9 +72,10 @@ public class Auth {
             this.repository.save(nova_pessoa);
             String token = this.service.generateToken(nova_pessoa);
             return ResponseEntity.ok(new DTOresposta(nova_pessoa.getNome(), token));
-        }
-        
-        return ResponseEntity.badRequest().build();
+       // }
+        // AJUSTAR ESSE TRATAMENTO DE ERRO IMEDIATAMENTE!!
+        // return ResponseEntity.status(HttpStatus.CREATED).body(pessoa2);
+       // return ResponseEntity.badRequest().build();
     }
     
 /* 
