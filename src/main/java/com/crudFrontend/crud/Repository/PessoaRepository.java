@@ -13,4 +13,5 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
     /*SELECT * FROM pessoa WHERE cpf = ? AND nome = ?; */
     Optional<Pessoa> findByCpfAndNome(String cpf, String nome);
     Optional<Pessoa> findByCpf(String cpf);
+    Optional<Pessoa> findByCpfAndGmail(String cpf, String gmail);
 }
