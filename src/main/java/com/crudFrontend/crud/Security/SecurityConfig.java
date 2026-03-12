@@ -33,8 +33,8 @@ public class SecurityConfig {
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authorizeHttpRequests(authorize -> authorize
       .requestMatchers("/auth/**").permitAll()
-      .requestMatchers("/pessoa/**").permitAll().
-      requestMatchers("/carrinho/**").permitAll()
+      .requestMatchers("/pessoa/**").permitAll()
+      .requestMatchers("/carrinho/**").permitAll()
       .anyRequest().authenticated()
       
       ).addFilterBefore(securityfilter,UsernamePasswordAuthenticationFilter.class);
