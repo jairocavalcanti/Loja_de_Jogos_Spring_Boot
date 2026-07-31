@@ -53,7 +53,6 @@ public class JogoController {
         } else {
             JogoResponseDTO dto2 = new JogoResponseDTO("jogo não encontrado", null);
             return ResponseEntity.status(404).body(dto2);
-            //  return ResponseEntity.ok(dto2);
         }
     }
 

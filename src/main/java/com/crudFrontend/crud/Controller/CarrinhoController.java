@@ -30,7 +30,6 @@ public class CarrinhoController {
         return ResponseEntity.ok(carrinho);
     }
 
-    /// metodo criarCarrinho alterado para retornar apenas mensagem de criação ou não
     @PostMapping("/postcarrinho/{cpf}")
     public ResponseEntity<String> CriarCarrinho(@PathVariable String cpf) {
         String carrinho = carrinhoservice.CriarCarrinho(cpf);
