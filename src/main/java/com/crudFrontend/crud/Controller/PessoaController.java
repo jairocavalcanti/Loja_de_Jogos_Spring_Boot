@@ -35,24 +35,14 @@ public class PessoaController {
     }
 
     @GetMapping("/getbyid/{id}")
-    // tipo ResponseEntity é utilizado para retornar status HTTP
-    // no caso abaixo devemos tratar de forma coesa pois o metodo retorna um tipo
-    // optional
     public ResponseEntity<Pessoa> getPessoaById(@PathVariable Long id) {
         return pessoaService.getPessoaById(id)
-                // .map já faz a verificação se o Optional contém um valor
-                // Se o Optional estiver presente, o método .map executa a função e retorna um
-                // HTTP status 200 (OK) com o valor no corpo
-                // o uso do metodo map deixa o codigo mais limpo, removendo a necessidade de IF
-                // ou ispresent()
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/postpessoa")
     public ResponseEntity<PessoaDTO> createPessoa(@RequestBody Pessoa pessoa) {
-        // o método retorna um status HTTP de objeto criado juntamente com o corpo do
-        // objeto que foi criado
         Optional<Pessoa> pessoa3 = pessoaService.getByCpfandNome(pessoa.getCpf(), pessoa.getNome());
 
 
@@ -60,8 +50,6 @@ public class PessoaController {
             PessoaDTO pessoa2 = new PessoaDTO(null, null, "Pessoa já existe no banco de dados!");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(pessoa2);
         }
-
-        //COLOCAR VERFIICAÇÃO NUMÉRICA
 
         if(pessoa.getCpf().length() < 11){
             PessoaDTO pessoa4 = new PessoaDTO(null, null, "cpf inválido!");
@@ -84,7 +72,6 @@ public class PessoaController {
         PessoaDTO pessoa2 = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), "pessoa criada com sucesso!");
         pessoaService.savePessoa(pessoa);
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoa2);
-        // return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.savePessoa(pessoa));
     }
 
     @PutMapping("/updatepessoa/{id}")
@@ -95,7 +82,6 @@ public class PessoaController {
     @DeleteMapping("/deletepessoa/{id}")
     public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
         pessoaService.deletePessoa(id);
-        // .ok().build(); ?
         return ResponseEntity.noContent().build();
     }
 
