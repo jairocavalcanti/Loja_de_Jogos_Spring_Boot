@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crudFrontend.crud.DTO.LoginRequest;
 import com.crudFrontend.crud.Service.AuthenticationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuthenticationController {
     // a anotação autowired é responsavel pela injeção de dependencia automática
     // evita a criação de objetos com "new"
-    @Autowired
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
+
+    AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     // @postmapping vai garantir que para a rota definida, o metodo retornado será do tipo POST
     @PostMapping("/autenticar")

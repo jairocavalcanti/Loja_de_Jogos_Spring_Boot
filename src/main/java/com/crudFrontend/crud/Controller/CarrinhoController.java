@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crudFrontend.crud.DTO.CarrinhoComNomeDTO;
 import com.crudFrontend.crud.Service.CarrinhoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/carrinho")
 public class CarrinhoController {
 
-    @Autowired
-    private CarrinhoService carrinhoservice;
+    private final CarrinhoService carrinhoservice;
+
+    CarrinhoController(CarrinhoService carrinhoservice) {
+        this.carrinhoservice = carrinhoservice;
+    }
 
     @GetMapping("/{cpf}")
     public ResponseEntity<CarrinhoComNomeDTO> visualizarCarrinho(@PathVariable String cpf) {

@@ -1,6 +1,5 @@
 package com.crudFrontend.crud.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +15,11 @@ import com.crudFrontend.crud.Service.CadastroService;
 @RequestMapping("/cadastro")
 public class CadastroController {
 
-    @Autowired
-    private CadastroService cadastro;
+    private final CadastroService cadastro;
+
+    CadastroController(CadastroService cadastro) {
+        this.cadastro = cadastro;
+    }
 
     @PostMapping("/postcadastro")
     public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa) {
