@@ -1,6 +1,5 @@
 package com.crudFrontend.crud.Controlller_Auth;
 
-import org.apache.tomcat.util.descriptor.web.LoginConfig;
 
 //import java.util.Optional;
 
@@ -11,10 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crudFrontend.crud.Records.DTOregistro;
-import com.crudFrontend.crud.Records.DTOresposta;
-import com.crudFrontend.crud.Records.LoginRequest;
-import com.crudFrontend.crud.Records.RespostaErro;
+import com.crudFrontend.crud.DTO.Records.DTOregistro;
+import com.crudFrontend.crud.DTO.Records.DTOresposta;
+import com.crudFrontend.crud.DTO.Records.LoginRequest;
+import com.crudFrontend.crud.DTO.Records.RespostaErro;
 import com.crudFrontend.crud.GlobalException.UsuarioJaExistenteException;
 import com.crudFrontend.crud.Model.Pessoa;
 import com.crudFrontend.crud.Repository.PessoaRepository;
@@ -27,11 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/auth")
 public class Auth {
     
-   // @Autowired
-   // private AuthenticationManager authenticationManager;
-   
-    // private AuthenticationManager authenticationManager;
-
     private final PessoaRepository repository;
 
     private final PasswordEncoder passwordEncoder;
@@ -42,14 +36,9 @@ public class Auth {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.service = service;
-        // this.authenticationManager = authenticationManager;
     }
-
-    // SENHA DO BIORNO: "VALHALLA"
-
-    //LOGIN DEVE REQUERIR EMAIL BRO! 
+ 
     @PostMapping("/login")
-    // ? - generic type (classes, records , lists ...)
     public ResponseEntity<?> login(@RequestBody LoginRequest body) {
         Pessoa user = this.repository.findByCpfAndGmail(body.cpf(), body.gmail()).orElseThrow(() -> new RuntimeException("User not found"));
         if (passwordEncoder.matches(body.senha(), user.getSenha()) && user.getGmail() != null) {
@@ -62,7 +51,6 @@ public class Auth {
     @PostMapping("/register")
     public ResponseEntity<DTOresposta> registraResponseEntity(@RequestBody DTOregistro body) {
         this.repository.findByCpf(body.cpf()).ifPresent(p -> {throw new UsuarioJaExistenteException("Usuário Já existente!"); });
-       // if(pessoa.isEmpty()){
             Pessoa nova_pessoa = new Pessoa();
             nova_pessoa.setSenha(passwordEncoder.encode(body.senha()));
             nova_pessoa.setCpf(body.cpf());
@@ -72,26 +60,7 @@ public class Auth {
             this.repository.save(nova_pessoa);
             String token = this.service.generateToken(nova_pessoa);
             return ResponseEntity.ok(new DTOresposta(nova_pessoa.getNome(), token));
-       // }
-        // AJUSTAR ESSE TRATAMENTO DE ERRO IMEDIATAMENTE!!
-        // return ResponseEntity.status(HttpStatus.CREATED).body(pessoa2);
-       // return ResponseEntity.badRequest().build();
+
     }
-    
-/* 
-    @PostMapping("/login2")
-    public ResponseEntity<DTOresposta> postMethodName(@RequestBody LoginRequest body) {
-        UsernamePasswordAuthenticationToken authtoken= new UsernamePasswordAuthenticationToken(body.gmail(), body.senha());
-
-        Authentication authentication = authenticationManager.authenticate(authtoken);
-
-        Pessoa pessoa = (Pessoa) authentication.getPrincipal();
-
-        String token = service.generateToken(pessoa);
-        
-        return ResponseEntity.ok(new DTOresposta(token, pessoa.getNome()));
-    }
-*/
-    
 
 }
