@@ -3,7 +3,6 @@ package com.crudFrontend.crud.Security;
 import java.io.IOException;
 import java.util.Collections;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +20,14 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    @Autowired
-    TokenService tokenService;
+    final TokenService tokenService;
 
-    @Autowired
-    PessoaRepository pessoaRepository;
+    final PessoaRepository pessoaRepository;
+
+    SecurityFilter(TokenService tokenService, PessoaRepository pessoaRepository) {
+        this.tokenService = tokenService;
+        this.pessoaRepository = pessoaRepository;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -33,22 +35,12 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // definindo liberação da rota /pessoas
-        // "startswith" trabalha com qualquer rota dentro de '/pessoa'
-        if (path.startsWith("/auth")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         String token = recoverToken(request);
 
         if (token != null) {
             String login = tokenService.validateToken(token);
 
             if (login != null) {
-                // implementar FINDBYEMAIL()
-                // consulta deve receber o mesmo corpo passado para o token na classe token
-                // service com "withSubjetc."
                 Pessoa user = pessoaRepository.findByCpf(login)
                         .orElseThrow(() -> new RuntimeException("Usuário nao encontrado!"));
 
@@ -62,13 +54,9 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     private String recoverToken(HttpServletRequest request) {
-        // armazena header authorization da requisição
         var authHeader = request.getHeader("Authorization");
-        // se o header authorization for = null
         if (authHeader == null)
-            // é retornado null
             return null;
-        // se não, o 'bearer' da requisição é substituído por uma string vazia
         return authHeader.replace("Bearer", "").trim();
     }
 

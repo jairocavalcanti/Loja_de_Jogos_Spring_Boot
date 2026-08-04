@@ -1,7 +1,5 @@
 package com.crudFrontend.crud.Security;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,39 +16,43 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    
-   //@Autowired
-  //private OneUserDetailsService userDetailsService;
 
-   @Autowired
-   SecurityFilter securityfilter;
+  final SecurityFilter securityfilter;
 
-   @Bean
-   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-      http
-      .csrf(csrf -> csrf.disable())
-      .cors(Customizer.withDefaults())
-      .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-      .authorizeHttpRequests(authorize -> authorize
-      .requestMatchers("/auth/**").permitAll()
-      .requestMatchers("/pessoa/**").permitAll()
-      .requestMatchers("/carrinho/**").permitAll()
-      .anyRequest().authenticated()
-      
-      ).addFilterBefore(securityfilter,UsernamePasswordAuthenticationFilter.class);
+  SecurityConfig(SecurityFilter securityfilter) {
+    this.securityfilter = securityfilter;
+  }
 
-      return http.build();
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable())
+        .cors(Customizer.withDefaults())
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers("/login/**").permitAll()
+            .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/jogos/**").permitAll()
+            .requestMatchers("/pessoa/**").permitAll()
+            .requestMatchers("/carrinho/**").permitAll()
+            .requestMatchers("/imagens/**").permitAll()
+            .anyRequest().authenticated()
 
-   }
+        ).addFilterBefore(securityfilter, UsernamePasswordAuthenticationFilter.class);
 
-   @Bean
-   public PasswordEncoder passwordEncoder(){
-     return new BCryptPasswordEncoder();
-   }
+    return http.build();
 
-   @Bean
-   public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-     return authenticationConfiguration.getAuthenticationManager();
-   }
+  }
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+      throws Exception {
+    return authenticationConfiguration.getAuthenticationManager();
+  }
 
 }
