@@ -3,7 +3,6 @@ package com.crudFrontend.crud.Service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crudFrontend.crud.Model.Pessoa;
@@ -12,8 +11,11 @@ import com.crudFrontend.crud.Repository.PessoaRepository;
 @Service
 public class PessoaService {
 
-    @Autowired
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
+
+    PessoaService(PessoaRepository pessoaRepository) {
+        this.pessoaRepository = pessoaRepository;
+    }
 
     public List<Pessoa> getAllPessoas(){
         return pessoaRepository.findAll();

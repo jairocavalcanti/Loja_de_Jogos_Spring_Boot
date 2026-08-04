@@ -19,11 +19,11 @@ public class JogoService {
         return jogoRepository.findAll();
     }
 
-    public Optional<Jogo> getJogoById(Long id){
+    public Optional<Jogo> getJogoById(Long id) {
         return jogoRepository.findById(id);
     }
 
-    public Optional<Jogo> getJogoByNome(String nome){
+    public Optional<Jogo> getJogoByNome(String nome) {
         return jogoRepository.findByNome(nome);
     }
 
@@ -31,16 +31,18 @@ public class JogoService {
         return jogoRepository.save(jogo);
     }
 
-    public Jogo updateJogo(Long id, Jogo jogoAtualizado){
-        Jogo jogo = jogoRepository.findById(id).
-             orElseThrow(() -> new RuntimeException("jogo não encontrado!"));
-        jogo.setNome(jogoAtualizado.getNome());
-        jogo.setDescrição(jogoAtualizado.getDescricao());
-        jogo.setPreco(jogoAtualizado.getPreco());
-        return jogoRepository.save(jogoAtualizado);
+    public Jogo updateJogo(Long id, Jogo jogoAtualizado) {
+    
+            Jogo jogo = jogoRepository.findById(id).orElseThrow(() -> new RuntimeException("jogo não encontrado!"));
+            jogo.setNome(jogoAtualizado.getNome());
+            jogo.setDescricao(jogoAtualizado.getDescricao());
+            jogo.setPreco(jogoAtualizado.getPreco());
+            jogo.setUrlimage(jogoAtualizado.getUrlimage());
+
+        return jogoRepository.save(jogo);
     }
 
-    public void deleteJogo(Long id){
+    public void deleteJogo(Long id) {
         jogoRepository.deleteById(id);
     }
 
