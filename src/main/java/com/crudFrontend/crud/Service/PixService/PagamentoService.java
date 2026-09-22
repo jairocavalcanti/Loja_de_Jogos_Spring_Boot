@@ -71,45 +71,45 @@ public class PagamentoService {
                 sobrenome = nomeCompleto.substring(espacoIdx + 1).trim();
             }
 
-        PaymentCreateRequest paymentCreateRequest = PaymentCreateRequest.builder()
-                .transactionAmount(pedido.getValorTotal())
-                .description("Pedido #" + pedido.getId())
-                .paymentMethodId("pix")
-                .dateOfExpiration(dataExpiracao)
-                .payer(PaymentPayerRequest.builder()
-                        .email(pedido.getPessoa().getGmail())
-                        .firstName(primeiroNome)
-                        .lastName(sobrenome)
-                        .identification(
-                                com.mercadopago.client.common.IdentificationRequest.builder()
-                                        .type("CPF")
-                                        .number(cpf.replaceAll("\\D", ""))
-                                        .build())
-                        .build())
-                .build();
+            PaymentCreateRequest paymentCreateRequest = PaymentCreateRequest.builder()
+                    .transactionAmount(pedido.getValorTotal())
+                    .description("Pedido #" + pedido.getId())
+                    .paymentMethodId("pix")
+                    .dateOfExpiration(dataExpiracao)
+                    .payer(PaymentPayerRequest.builder()
+                            .email(pedido.getPessoa().getGmail())
+                            .firstName(primeiroNome)
+                            .lastName(sobrenome)
+                            .identification(
+                                    com.mercadopago.client.common.IdentificationRequest.builder()
+                                            .type("CPF")
+                                            .number(cpf.replaceAll("\\D", ""))
+                                            .build())
+                            .build())
+                    .build();
 
-        Payment payment = client.create(paymentCreateRequest);
+            Payment payment = client.create(paymentCreateRequest);
 
-        String txId = String.valueOf(payment.getId());
-        String qrCodeBase64 = payment.getPointOfInteraction().getTransactionData().getQrCodeBase64();
-        String copiaECola = payment.getPointOfInteraction().getTransactionData().getQrCode();
+            String txId = String.valueOf(payment.getId());
+            String qrCodeBase64 = payment.getPointOfInteraction().getTransactionData().getQrCodeBase64();
+            String copiaECola = payment.getPointOfInteraction().getTransactionData().getQrCode();
 
-        vincularTransactionId(pedido.getId(), txId);
+            vincularTransactionId(pedido.getId(), txId);
 
-        return new PixResponseDTO(
-                pedido.getId(),
-                pedido.getValorTotal(),
-                txId,
-                qrCodeBase64,
-                copiaECola);
+            return new PixResponseDTO(
+                    pedido.getId(),
+                    pedido.getValorTotal(),
+                    txId,
+                    qrCodeBase64,
+                    copiaECola);
 
-    } catch (com.mercadopago.exceptions.MPApiException e) {
-        System.err.println(">>> CÓDIGO DE STATUS DO MERCADO PAGO: " + e.getStatusCode());
-        System.err.println(">>> RESPOSTA DETALHADA DA API: " + e.getApiResponse().getContent());
-        throw new RuntimeException("Erro retornado pelo Mercado Pago: " + e.getApiResponse().getContent(), e);
-    } catch (Exception e) {
-        throw new RuntimeException("Erro ao gerar PIX com a administradora de pagamento: " + e.getMessage(), e);
-    }
+        } catch (com.mercadopago.exceptions.MPApiException e) {
+            System.err.println(">>> CÓDIGO DE STATUS DO MERCADO PAGO: " + e.getStatusCode());
+            System.err.println(">>> RESPOSTA DETALHADA DA API: " + e.getApiResponse().getContent());
+            throw new RuntimeException("Erro retornado pelo Mercado Pago: " + e.getApiResponse().getContent(), e);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao gerar PIX com a administradora de pagamento: " + e.getMessage(), e);
+        }
     }
 
     // 2. Transação rápida apenas para persistir o pedido inicial
