@@ -166,8 +166,4 @@ O ecossistema relacional do banco de dados é estruturado sobre:
 - **`Carrinho` & `ItemCarrinho`**: Relação 1:1 com `Pessoa` gerenciando múltiplos itens temporários de compra e cálculo de total.
 - **`Pedido` & `ItemPedido`**: Registro permanente da transação após o fechamento do checkout, contendo valor total, status do pagamento e `transactionId` do gateway.
 
----
-
-## 📄 Licença
-
 Este projeto foi desenvolvido para fins didáticos e comerciais sob a licença [MIT](LICENSE).
