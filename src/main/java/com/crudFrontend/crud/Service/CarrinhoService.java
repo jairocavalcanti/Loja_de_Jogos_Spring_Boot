@@ -1,14 +1,12 @@
 package com.crudFrontend.crud.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.crudFrontend.crud.Repository.PessoaRepository;
-import com.crudFrontend.crud.DTO.CarrinhoComNomeDTO;
-import com.crudFrontend.crud.DTO.ItemCarrinhoDTO;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.crudFrontend.crud.DTO.CarrinhoDTOs.CarrinhoComNomeDTO;
 import com.crudFrontend.crud.Model.Carrinho;
 import com.crudFrontend.crud.Model.ItemCarrinho;
 import com.crudFrontend.crud.Model.Jogo;
@@ -23,68 +21,28 @@ public class CarrinhoService {
 
   private final JogoRepository jogoRepository;
 
-  private final PessoaRepository pessoaRepository;
-
-  CarrinhoService(CarrinhoRepository carrinhoRepository, PessoaRepository pessoaRepository,
+  CarrinhoService(CarrinhoRepository carrinhoRepository,
       JogoRepository jogoRepository) {
     this.carrinhoRepository = carrinhoRepository;
-    this.pessoaRepository = pessoaRepository;
     this.jogoRepository = jogoRepository;
   }
 
-  public CarrinhoComNomeDTO buscarCarrinho(String cpf) {
-    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
-
+  @Transactional
+  public CarrinhoComNomeDTO buscarCarrinho(Pessoa pessoa) {
     Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
-        .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
-
-    List<ItemCarrinhoDTO> itensDTO = new ArrayList<>();
-
-    for (ItemCarrinho item : carrinho.getItens()) {
-
-      Jogo jogo = item.getJogo();
-
-      itensDTO.add(new ItemCarrinhoDTO(
-          jogo.getId(),
-          jogo.getNome(),
-          jogo.getDescricao(),
-          item.getQuantidade(),
-          jogo.getPreco()));
-    }
-
-    return new CarrinhoComNomeDTO(
-        pessoa.getNome(),
-        pessoa.getCpf(),
-        carrinho.getTotal(),
-        itensDTO);
+        .orElseGet(() -> carrinhoRepository.save(new Carrinho(pessoa)));
+    return new CarrinhoComNomeDTO(pessoa, carrinho);
   }
 
-  public String CriarCarrinho(String cpf) {
-    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
 
-    Optional<Carrinho> carrinhoexistente = carrinhoRepository.findByPessoa(pessoa);
-
-    if (carrinhoexistente.isPresent()) {
-      return "carrinho já existe para usuário <<" + pessoa.getNome() + ">> !";
-    } else {
-      carrinhoRepository.save(new Carrinho(pessoa));
-    }
-
-    return "Carrinho criado!";
-  }
-
-  public void adicionarAoCarrinho(String cpf, Long Idjogo, int quantidade) {
-
-    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+  @Transactional
+  public void adicionarAoCarrinho(Pessoa pessoa, Long Idjogo, int quantidade) {
 
     Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
         .orElseGet(() -> carrinhoRepository.save(new Carrinho(pessoa)));
 
     Jogo jogo = jogoRepository.findById(Idjogo)
-        .orElseThrow(() -> new RuntimeException("Jogo não encontrado!"));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Jogo não encontrado!"));
 
     ItemCarrinho itemExistente = null;
 
@@ -107,11 +65,8 @@ public class CarrinhoService {
     carrinhoRepository.save(carrinho);
   }
 
-  public void ExcluirItemCarrinho(String cpf, Long Idjogo, int quantidade) {
-
-    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
-
+  @Transactional 
+  public void ExcluirItemCarrinho(Pessoa pessoa, Long Idjogo, int quantidade) {
     Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
         .orElseGet(() -> carrinhoRepository.save(new Carrinho(pessoa)));
 
@@ -136,15 +91,15 @@ public class CarrinhoService {
     }
   }
 
-  public void ExcluirCarrinho(String cpf) {
 
-    Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-        .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+  @Transactional 
+  public void ExcluirCarrinho(Pessoa pessoa) {
 
     Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
-        .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrinho não encontrado"));
 
-    carrinhoRepository.delete(carrinho);
+    carrinho.getItens().clear();
+    carrinhoRepository.save(carrinho);
   }
 
 }
