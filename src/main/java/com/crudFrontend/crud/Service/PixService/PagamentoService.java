@@ -8,7 +8,6 @@ import com.crudFrontend.crud.Model.Pessoa;
 import com.crudFrontend.crud.Model.Pixmodels.ItemPedido;
 import com.crudFrontend.crud.Model.Pixmodels.Pedido;
 import com.crudFrontend.crud.Repository.CarrinhoRepository;
-import com.crudFrontend.crud.Repository.PessoaRepository;
 import com.crudFrontend.crud.Repository.PixRepository.PedidoRepository;
 import com.crudFrontend.crud.Service.CarrinhoService;
 import com.mercadopago.MercadoPagoConfig;
@@ -17,8 +16,10 @@ import com.mercadopago.client.payment.PaymentCreateRequest;
 import com.mercadopago.client.payment.PaymentPayerRequest;
 import com.mercadopago.resources.payment.Payment;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -29,19 +30,16 @@ import java.util.Map;
 public class PagamentoService {
 
     private final PedidoRepository pedidoRepository;
-    private final PessoaRepository pessoaRepository;
     private final CarrinhoRepository carrinhoRepository;
     private final CarrinhoService carrinhoService;
     private final MercadoPagoSignatureValidator signatureValidator;
 
     public PagamentoService(PedidoRepository pedidoRepository,
-            PessoaRepository pessoaRepository,
             CarrinhoRepository carrinhoRepository,
             CarrinhoService carrinhoService,
             MercadoPagoSignatureValidator signatureValidator,
             @Value("${mercadopago.access-token}") String accessToken) {
         this.pedidoRepository = pedidoRepository;
-        this.pessoaRepository = pessoaRepository;
         this.carrinhoRepository = carrinhoRepository;
         this.carrinhoService = carrinhoService;
         this.signatureValidator = signatureValidator;
@@ -51,8 +49,8 @@ public class PagamentoService {
 
     // 1. Sem @Transactional para não prender a ligação à base de dados durante o
     // pedido HTTP externo
-    public PixResponseDTO gerarPixPorCpf(String cpf) {
-        Pedido pedido = criarPedidoInicial(cpf);
+    public PixResponseDTO gerarPixPorCpf(Pessoa pessoa) {
+        Pedido pedido = criarPedidoInicial(pessoa);
 
         try {
             PaymentClient client = new PaymentClient();
@@ -83,7 +81,7 @@ public class PagamentoService {
                             .identification(
                                     com.mercadopago.client.common.IdentificationRequest.builder()
                                             .type("CPF")
-                                            .number(cpf.replaceAll("\\D", ""))
+                                            .number(pessoa.getCpf().replaceAll("\\D", ""))
                                             .build())
                             .build())
                     .build();
@@ -114,15 +112,12 @@ public class PagamentoService {
 
     // 2. Transação rápida apenas para persistir o pedido inicial
     @Transactional
-    public Pedido criarPedidoInicial(String cpf) {
-        Pessoa pessoa = pessoaRepository.findByCpf(cpf)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado para o CPF informado!"));
-
+    public Pedido criarPedidoInicial(Pessoa pessoa) {
         Carrinho carrinho = carrinhoRepository.findByPessoa(pessoa)
-                .orElseThrow(() -> new RuntimeException("Carrinho não encontrado para esta pessoa!"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrinho não encontrado para esta pessoa!"));
 
         if (carrinho.getItens() == null || carrinho.getItens().isEmpty()) {
-            throw new RuntimeException("O carrinho está vazio!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O carrinho está vazio!");
         }
 
         BigDecimal valorTotal = carrinho.getItens().stream()
@@ -211,16 +206,21 @@ public class PagamentoService {
 
             pedido.setStatus(StatusPedido.PAGO);
             pedidoRepository.save(pedido);
-            carrinhoService.ExcluirCarrinho(pedido.getPessoa().getCpf());
+            carrinhoService.ExcluirCarrinho(pedido.getPessoa());
             System.out.println(">>> Sucesso: Pedido #" + pedido.getId() + " alterado para PAGO!");
         }, () -> {
             System.out.println(">>> ALERTA: Nenhum pedido encontrado no banco com transactionId = " + transactionId);
         });
     }
 
-    public StatusPedido consultarStatus(Long pedidoId) {
-        return pedidoRepository.findById(pedidoId)
-                .map(Pedido::getStatus)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado!"));
+    public StatusPedido consultarStatus(Long pedidoId, Pessoa usuarioLogado) {
+       Pedido pedido = pedidoRepository.findById(pedidoId)
+              .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado!"));
+
+        if(!pedido.getPessoa().getId().equals(usuarioLogado.getId())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Acesso negado: este pedido não pertence a você");
+        }      
+       
+       return pedido.getStatus();
     }
 }
