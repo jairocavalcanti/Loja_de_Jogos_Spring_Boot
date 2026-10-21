@@ -1,10 +1,11 @@
 package com.crudFrontend.crud.Controller.PixController;
 
-import com.crudFrontend.crud.DTO.PIXdtos.PixRequestDTO;
 import com.crudFrontend.crud.DTO.PIXdtos.PixResponseDTO;
 import com.crudFrontend.crud.Enum.StatusPedido;
+import com.crudFrontend.crud.Model.Pessoa;
 import com.crudFrontend.crud.Service.PixService.PagamentoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,14 +22,14 @@ public class PagamentoController {
     }
 
     @PostMapping("/pix")
-    public ResponseEntity<PixResponseDTO> criarPix(@RequestBody PixRequestDTO request) {
-        PixResponseDTO response = pagamentoService.gerarPixPorCpf(request.cpf());
+    public ResponseEntity<PixResponseDTO> criarPix(@AuthenticationPrincipal Pessoa pessoa) {
+        PixResponseDTO response = pagamentoService.gerarPixPorCpf(pessoa);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/status/{pedidoId}")
-    public ResponseEntity<Map<String, String>> checarStatus(@PathVariable Long pedidoId) {
-        StatusPedido status = pagamentoService.consultarStatus(pedidoId);
+    public ResponseEntity<Map<String, String>> checarStatus(@PathVariable Long pedidoId, @AuthenticationPrincipal Pessoa pessoa) {
+        StatusPedido status = pagamentoService.consultarStatus(pedidoId, pessoa);
         return ResponseEntity.ok(Map.of("status", status.name()));
     }
 
